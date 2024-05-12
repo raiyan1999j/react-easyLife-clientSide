@@ -1,23 +1,33 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { InfoProvider } from "./ContextProvider/Context";
 import Loading from "./Loader/Loading";
 import { IoIosLogOut } from "react-icons/io";
+import "animate.css";
+import "./App.css";
+import { IoBagAdd, IoBagAddOutline, IoSettingsSharp } from "react-icons/io5";
+import { MdManageAccounts } from "react-icons/md";
 
 export default function App() {
   const navigate = useNavigate();
-  const {user,load,logoutUser} = useContext(InfoProvider);
+  const [dropdown, setDropDown] = useState(false);
+  const [dashBoard, setDash] = useState(false);
+  const { user, load, logoutUser } = useContext(InfoProvider);
 
-  useEffect(()=>{
-    navigate('/home')
-  },[])
+  useEffect(() => {
+    navigate("/home");
+  }, []);
   return (
     <>
       <header className="w-full h-[80px] bg-navBarImg bg-no-repeat bg-cover">
         <nav className="w-[1200px] h-full mx-auto flex flex-row justify-center items-center">
           <div className="w-[20%] h-full flex flex-row items-center">
             <div className="w-[80px] h-[50px]">
-              <img src="https://i.postimg.cc/yxkKqRXY/vecteezy-dream-butterfly-png-ai-generative-24499854.png" alt="logoImg" className="w-full h-full object-contain" />
+              <img
+                src="https://i.postimg.cc/yxkKqRXY/vecteezy-dream-butterfly-png-ai-generative-24499854.png"
+                alt="logoImg"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="w-[120px]">
               <img
@@ -30,48 +40,86 @@ export default function App() {
           <div className="w-[60%]">
             <ul className="h-full w-full flex flex-row justify-between capitalize font-semibold font-mono text-white text-xl">
               <li>
-                <NavLink to='/home'>home</NavLink>
+                <NavLink to="/home">home</NavLink>
               </li>
               <li>
-                <NavLink to='/service'>service</NavLink>
+                <NavLink to="/service">service</NavLink>
               </li>
-              {
-                load?
+              {load ? (
                 <div>
-                <Loading/>
-                </div>:
+                  <Loading />
+                </div>
+              ) : (
                 <li>
-                {
-                  user?
-                  <NavLink>Dashboard</NavLink>:
-                  <NavLink to='/login'>login</NavLink>
-                }
-              </li>
-              }
-              
+                  {user ? (
+                    <span
+                      className="hover:cursor-pointer"
+                      onClick={() => {
+                        setDash(!dashBoard);
+                      }}
+                    >
+                      Dashboard
+                    </span>
+                  ) : (
+                    <NavLink to="/login">login</NavLink>
+                  )}
+                </li>
+              )}
             </ul>
           </div>
           <div className="w-[20%] flex flex-row justify-around">
-          {
-            load?
-            <div>
-              <Loading/>
-            </div>:
-            <div className="h-[40px] w-[40px] rounded-full dropdown">
-            {user?<img src={user?.photoURL} tabIndex={0} role="button" className="h-full w-full object-cover rounded-full"/>:""}
-            <ul tabIndex={0} className="dropdown-content z-[1] w-40 mt-5">
-              <li className="font-semibold font-mono text-bg capitalize bg-success text-white px-3 py-3 rounded-sm">
-                {user?.displayName}
-              </li>
-              <li>
-                <button className="capitalize flex flex-row items-center btn bg-black text-white mt-2 py-2 px-2 hover:text-black" onClick={()=>{logoutUser()}}>
-                  logout
-                  <IoIosLogOut className="ml-3 text-xl"/>
-                </button>
-              </li>
-            </ul>
-            </div>
-          }
+            {load ? (
+              <div>
+                <Loading />
+              </div>
+            ) : (
+              <div className="h-[40px] w-[40px] rounded-full">
+                {user ? (
+                  <img
+                    src={user?.photoURL}
+                    className="h-full w-full object-cover rounded-full hover:cursor-pointer"
+                    onClick={() => {
+                      setDropDown(!dropdown);
+                    }}
+                  />
+                ) : (
+                  ""
+                )}
+                <ul
+                  className={`z-[1] w-40 mt-5 ${dropdown ? "block" : "hidden"}`}
+                >
+                  <li
+                    className={`font-semibold font-mono text-bg capitalize bg-success text-white px-3 py-3 rounded-sm ${
+                      dropdown
+                        ? "animate__animated animate__flipInX oneFlipInX"
+                        : "animate__animated animate__flipOutX"
+                    }`}
+                  >
+                    {user?.displayName}
+                  </li>
+                  <li
+                    className={`${
+                      dropdown
+                        ? "animate__animated animate__flipInX twoFlipInX"
+                        : "animate__animated animate__flipOutX"
+                    }`}
+                    onClick={() => {
+                      setDropDown(!dropdown);
+                    }}
+                  >
+                    <button
+                      className="capitalize flex flex-row items-center btn bg-black text-white mt-2 py-2 px-2 hover:text-black"
+                      onClick={() => {
+                        logoutUser();
+                      }}
+                    >
+                      logout
+                      <IoIosLogOut className="ml-3 text-xl" />
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
             <div>
               <label className="swap swap-rotate">
                 {/* this hidden checkbox controls the state */}
@@ -98,10 +146,24 @@ export default function App() {
             </div>
           </div>
         </nav>
-      </header>
 
+        <ul className={`ml-[69%] mt-2 ${dashBoard?"block":"hidden"}`}>
+          <NavLink to="/addService" className={`shadow-lg shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard1":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`}>
+            Add Service
+            <IoBagAdd className="text-xl mr-4"/>
+          </NavLink>
+          <NavLink to="/manage" className={`my-5 shadow-lg shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 ease-linear hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard2":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`}>
+            Manage Service
+            <IoSettingsSharp className="text-xl mr-4" />
+          </NavLink>
+          <NavLink to="/todo" className={`shadow-lg shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard3":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`}>
+            Service To Do
+            <MdManageAccounts className="text-xl mr-4" />
+          </NavLink>
+        </ul>
+      </header>
       <main className="w-full">
-        <Outlet/>
+        <Outlet />
       </main>
     </>
   );
