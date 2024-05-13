@@ -8,6 +8,8 @@ import Register from './UserAuth/Register/Register.jsx';
 import Context from './ContextProvider/Context.jsx'
 import Home from './Component/Home/Home.jsx'
 import AddService from './Component/AddService/AddService.jsx'
+import Manage from './Component/ManageService/Manage.jsx'
+import PrivetRoute from './Component/PrivetRoute/PrivetRoute.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path:'/addService',
-        element:<AddService/>
+        element:<PrivetRoute><AddService/></PrivetRoute>
+      },
+      {
+        path:'/manage',
+        element:<Manage/>
       }
     ]
   }
