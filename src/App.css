@@ -13,3 +13,38 @@
 .dashBoard3{
     animation-delay:1s;
 }
+.dashBoard4{
+    animation-delay:1.5s;
+}
+/* addServices */
+  .flip-card-inner {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    perspective: 1000px;
+  }
+  
+
+  .flip-rotate-180{
+    transform:rotateY(180deg)  ;
+    -webkit-transform:rotateY(180deg)  ;
+    -moz-transform:rotateY(180deg)  ;
+    -ms-transform:rotateY(180deg)  ;
+    -o-transform:rotateY(180deg)  ;
+}
+
+.flip-rotate-0{
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+}
+  .flip-card-front, .flip-card-back {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }

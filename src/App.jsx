@@ -7,6 +7,7 @@ import "animate.css";
 import "./App.css";
 import { IoBagAdd, IoBagAddOutline, IoSettingsSharp } from "react-icons/io5";
 import { MdManageAccounts } from "react-icons/md";
+import { PiLockersFill } from "react-icons/pi";
 
 export default function App() {
   const navigate = useNavigate();
@@ -147,18 +148,23 @@ export default function App() {
           </div>
         </nav>
 
-        <ul className={`ml-[69%] mt-2 ${dashBoard?"block":"hidden"}`}>
-          <NavLink to="/addService" className={`shadow-lg shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard1":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`}>
+        <ul className={`ml-[69%] mt-2 ${dashBoard?"block":"hidden"} z-10`}>
+          <NavLink to="/addService" className={`shadow-lg shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard1":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`} onClick={()=>{setDash(!dashBoard)}}>
             Add Service
             <IoBagAdd className="text-xl mr-4"/>
           </NavLink>
-          <NavLink to="/manage" className={`my-5 shadow-lg shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 ease-linear hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard2":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`}>
+          <NavLink to="/manage" className={`my-5 shadow-lg shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 ease-linear hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard2":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`} onClick={()=>{setDash(!dashBoard)}}>
             Manage Service
             <IoSettingsSharp className="text-xl mr-4" />
           </NavLink>
-          <NavLink to="/todo" className={`shadow-lg shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard3":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`}>
+          <NavLink to="/todo" className={`shadow-lg shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard3":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`} onClick={()=>{setDash(!dashBoard)}}>
             Service To Do
             <MdManageAccounts className="text-xl mr-4" />
+          </NavLink>
+
+          <NavLink to="/booked" className={`shadow-lg mt-5 shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard4":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`} onClick={()=>{setDash(!dashBoard)}}>
+            Booked services
+            <PiLockersFill className="text-xl mr-4"/>
           </NavLink>
         </ul>
       </header>

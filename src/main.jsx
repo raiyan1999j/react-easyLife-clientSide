@@ -7,6 +7,7 @@ import Login from './UserAuth/Login/Login.jsx'
 import Register from './UserAuth/Register/Register.jsx';
 import Context from './ContextProvider/Context.jsx'
 import Home from './Component/Home/Home.jsx'
+import AddService from './Component/AddService/AddService.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path:'/home',
         element:<Home/>
+      },
+      {
+        path:'/addService',
+        element:<AddService/>
       }
     ]
   }
