@@ -90,7 +90,7 @@
   -o-border-radius:20px;
 }
 .modalCard,.modalImgCard,.modalInput,.modalButton{
-background: rgba(222, 20, 72, 0.17);
+background: rgba(222, 20, 72, 0.57);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(4px);
@@ -98,11 +98,11 @@ backdrop-filter: blur(4px);
 border: 1px solid rgba(222, 20, 72, 0.3);
 }
 .modalImgCard{
-background: rgba(150, 214, 214, 0.33);
+background: rgba(150, 214, 214, 0.43);
 border: 1px solid rgba(150, 214, 214, 0.3);
 }
 .modalInput{
-background: rgba(150, 214, 214, 0.43);
+background: rgba(150, 214, 214, 0.53);
 border: 1px solid rgba(150, 214, 214, 0.3);
 }
 .modalButton{

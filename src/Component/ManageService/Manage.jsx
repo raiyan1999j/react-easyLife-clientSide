@@ -15,7 +15,7 @@ export default function Manage() {
         .then((data)=>{
             setInfo(data.data)
         })
-    },[])
+    },[modal])
 
     const dataUpdate=(value)=>{
       setModal(true)
