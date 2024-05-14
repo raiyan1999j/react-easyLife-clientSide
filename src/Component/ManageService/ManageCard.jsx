@@ -5,14 +5,15 @@ import "../../App.css"
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
 import { IoIosInformationCircle } from "react-icons/io";
+import "animate.css"
 
-export default function ManageCard({info,updateData}){
+export default function ManageCard({info,updateData,clearItem}){
     const {category,service,price,description,photo,_id} = info;
     const [removeItem,setRemove] = useState(true);
 
     return(
         <>
-        <div className="w-full flex flex-col items-center">
+        <div className="w-full flex flex-col items-center animate__animated animate__flipInX">
             <div className="w-[85%] h-[250px] static z-10 shadow-lg shadow-gray-400 overflow-hidden">
             <div className="h-full w-full relative">
                 <img src={photo} alt="serviceImg" className="h-full w-full object-cover rounded-lg absolute -z-10" />
@@ -58,7 +59,7 @@ export default function ManageCard({info,updateData}){
                 </div>
 
                 <div className={`flex flex-row overflow-hidden w-full absolute top-[80px] ${removeItem?"translate-x-[100%] transition-all ease-out duration-500":"slide-right"}`}>
-                    <div className="w-[20%] flex justify-center items-center bg-green-500 text-white hover:cursor-pointer" onClick={()=>{setRemove(!removeItem)}}>
+                    <div className="w-[20%] flex justify-center items-center bg-green-500 text-white hover:cursor-pointer hover:bg-transparent hover:text-green-500 transition-all duration-500 ease-in" onClick={()=>{setRemove(!removeItem)}}>
                         <span>
                         <ImCross />
                         </span>
@@ -68,7 +69,9 @@ export default function ManageCard({info,updateData}){
                             Are you sure?
                         </h2>
                     </div>
-                    <div className="w-[20%] flex justify-center items-center bg-red-500 text-white">
+                    <div className="w-[20%] flex justify-center items-center bg-red-500 text-white hover:cursor-pointer hover:bg-transparent hover:text-red-500 transition-all duration-500 ease-out" onClick={()=>{
+                        clearItem(_id)
+                    }}>
                         <span>
                         <FaCheck />
                         </span>
