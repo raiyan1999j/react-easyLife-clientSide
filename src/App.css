@@ -48,3 +48,73 @@
   .flip-card-back {
     transform: rotateY(180deg);
   }
+
+/* manageService */
+.slide-left,.slide-right{
+  transition:all 0.5s ease-out;
+  transform:translateX(-100%);
+  -webkit-transition:all 0.5s ease-out;
+  -moz-transition:all 0.5s ease-out;
+  -ms-transition:all 0.5s ease-out;
+  -o-transition:all 0.5s ease-out;
+  -webkit-transform:translateX(-100%);
+  -moz-transform:translateX(-100%);
+  -ms-transform:translateX(-100%);
+  -o-transform:translateX(-100%);
+}
+.slide-right{
+  transform:translateX(0%);
+  -webkit-transform:translateX(0%);
+  -moz-transform:translateX(0%);
+  -ms-transform:translateX(0%);
+  -o-transform:translateX(0%);
+}
+.infoCard:hover .infoIcon{
+  display: none;
+}
+.infoCard:hover .cardDescription,.infoCard:hover .cardPrice{
+  display: block;
+}
+.cardDescription::-webkit-scrollbar{
+  width:5px;
+}
+.cardDescription::-webkit-scrollbar-track{
+  background:rgb(128, 185, 202);
+}
+.cardDescription::-webkit-scrollbar-thumb{
+  background-color:rgb(100, 127, 214);
+  border-radius:20px;
+  -webkit-border-radius:20px;
+  -moz-border-radius:20px;
+  -ms-border-radius:20px;
+  -o-border-radius:20px;
+}
+.modalCard,.modalImgCard,.modalInput,.modalButton{
+background: rgba(222, 20, 72, 0.17);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(4px);
+-webkit-backdrop-filter: blur(4px);
+border: 1px solid rgba(222, 20, 72, 0.3);
+}
+.modalImgCard{
+background: rgba(150, 214, 214, 0.33);
+border: 1px solid rgba(150, 214, 214, 0.3);
+}
+.modalInput{
+background: rgba(150, 214, 214, 0.43);
+border: 1px solid rgba(150, 214, 214, 0.3);
+}
+.modalButton{
+background: rgba(220, 20, 60, 0.65);
+border: 1px solid rgba(220, 20, 60, 0.3);
+}
+.modalButton:hover {
+  background: rgba(150, 214, 214, 0.43);
+  border-radius: 0px;
+  border: 1px solid rgba(150, 214, 214, 0.3);
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
