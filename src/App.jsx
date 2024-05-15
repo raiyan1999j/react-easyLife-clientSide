@@ -148,7 +148,7 @@ export default function App() {
           </div>
         </nav>
 
-        <ul className={`ml-[69%] mt-2 ${dashBoard?"block":"hidden"} z-10`}>
+        <ul className={`ml-[69%] mt-2 ${dashBoard?"block":"hidden"} z-30`}>
           <NavLink to="/addService" className={`shadow-lg shadow-blue-100 py-3 pl-4 w-[50%] rounded-lg text-lg font-serif font-semibold text-gray-600 capitalize block transition-all duration-500 hover:bg-blue-400 hover:text-white hover:cursor-pointer ${dashBoard?"animate__animated animate__flipInX dashBoard1":"animate__animated animate__flipOutX"} flex flex-row items-center justify-between`} onClick={()=>{setDash(!dashBoard)}}>
             Add Service
             <IoBagAdd className="text-xl mr-4"/>

@@ -55,7 +55,7 @@ export default function Manage() {
     }
   return (
     <>
-      <section className="w-[1200px] mx-auto pt-[50px] relative">
+      <section className="w-[1200px] mx-auto pt-[50px] relative -z-10">
       {
         modal?<UpdateService 
         selectedInfo={container[0]}

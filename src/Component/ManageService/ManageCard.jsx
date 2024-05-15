@@ -8,7 +8,7 @@ import { IoIosInformationCircle } from "react-icons/io";
 import "animate.css"
 
 export default function ManageCard({info,updateData,clearItem}){
-    const {category,service,price,description,photo,_id} = info;
+    const {category,service,price,description,photo,_id,location} = info;
     const [removeItem,setRemove] = useState(true);
 
     return(
@@ -25,6 +25,9 @@ export default function ManageCard({info,updateData,clearItem}){
                         {description}
                     </div>
                     <div className="absolute left-0 bottom-4 text-white px-4 hidden cardPrice w-full">
+                    <div className="w-full font-bold text-base">
+                        Location : {location}
+                    </div>
                     <div className="flex flex-row justify-between w-full">
                         <div>
                             <h2 className="font-bold text-base">price : <span>{price}$</span></h2>
