@@ -35,9 +35,9 @@ export default function ServiceCard({ info }) {
               <span className="badge badge-neutral mt-4 py-2 px-8">{service}</span>
             </div>
             <div>
-              <button class="btn-17 capitalize">
-                <span class="text-container">
-                  <span class="text">View Details</span>
+              <button className="btn-17 capitalize">
+                <span className="text-container">
+                  <span className="text">View Details</span>
                 </span>
               </button>
             </div>
