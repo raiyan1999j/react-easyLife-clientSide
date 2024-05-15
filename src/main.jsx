@@ -9,7 +9,8 @@ import Context from './ContextProvider/Context.jsx'
 import Home from './Component/Home/Home.jsx'
 import AddService from './Component/AddService/AddService.jsx'
 import Manage from './Component/ManageService/Manage.jsx'
-import PrivetRoute from './Component/PrivetRoute/PrivetRoute.jsx'
+import PrivetRoute from './Component/PrivetRoute/PrivetRoute.jsx';
+import Services from './Component/Services/Services.jsx'
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path:'/manage',
         element:<PrivetRoute><Manage/></PrivetRoute>
+      },
+      {
+        path:'/service',
+        element:<Services/>
       }
     ]
   }
