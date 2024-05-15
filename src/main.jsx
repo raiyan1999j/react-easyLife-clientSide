@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import axios from 'axios';
 import Login from './UserAuth/Login/Login.jsx'
 import Register from './UserAuth/Register/Register.jsx';
 import Context from './ContextProvider/Context.jsx'
@@ -11,6 +12,7 @@ import AddService from './Component/AddService/AddService.jsx'
 import Manage from './Component/ManageService/Manage.jsx'
 import PrivetRoute from './Component/PrivetRoute/PrivetRoute.jsx';
 import Services from './Component/Services/Services.jsx'
+import Details from './Component/Details/Details.jsx'
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,16 @@ const router = createBrowserRouter([
       {
         path:'/service',
         element:<Services/>
+      },
+      {
+        path:'/details/:id',
+        element:<PrivetRoute><Details/></PrivetRoute>,
+        loader:({params})=>{
+          return axios(`http://localhost:5000/details/${params.id}`)
+          .then((data)=>{
+            return data.data
+          })
+        }
       }
     ]
   }

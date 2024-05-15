@@ -22,8 +22,6 @@ export default function Services() {
       .then((data) => {
         setAllService(data.data.result);
         setTotal(data.data.totalPage);
-
-        console.log(data)
       })
       .catch((error) => {
         console.log(error);

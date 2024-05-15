@@ -1,5 +1,6 @@
 import { FaImage } from "react-icons/fa";
 import "../../App.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ServiceCard({ info }) {
   const {
@@ -13,6 +14,11 @@ export default function ServiceCard({ info }) {
     price,
     category,
   } = info;
+  const navigate = useNavigate();
+
+  const detailPage=()=>{
+    navigate(`/details/${_id}`)
+  }
   return (
     <>
       <div className="grid grid-cols-2 gap-x-4 shadow-[rgba(46,204,113,0.5)_0px_0px_20px_-2px] sh rounded-lg items-center px-4 py-4">
@@ -35,7 +41,7 @@ export default function ServiceCard({ info }) {
               <span className="badge badge-neutral mt-4 py-2 px-8">{service}</span>
             </div>
             <div>
-              <button className="btn-17 capitalize">
+              <button className="btn-17 capitalize" onClick={detailPage}>
                 <span className="text-container">
                   <span className="text">View Details</span>
                 </span>
