@@ -120,8 +120,6 @@ border: 1px solid rgba(220, 20, 60, 0.3);
 }
 /* All-service */
 
-
-/* CSS */
 .btn-17,
 .btn-17 *,
 .btn-17 :after,
@@ -269,3 +267,8 @@ border: 1px solid rgba(220, 20, 60, 0.3);
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
 }
+
+/* search-btn */
+
+
+/* CSS */
