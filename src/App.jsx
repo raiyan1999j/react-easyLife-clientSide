@@ -8,6 +8,7 @@ import "./App.css";
 import { IoBagAdd, IoBagAddOutline, IoSettingsSharp } from "react-icons/io5";
 import { MdManageAccounts } from "react-icons/md";
 import { PiLockersFill } from "react-icons/pi";
+import Footer from "./Component/Footer/Footer";
 
 export default function App() {
   const navigate = useNavigate();
@@ -171,6 +172,9 @@ export default function App() {
       <main className="w-full">
         <Outlet />
       </main>
+      <section className=" bg-navBarImg bg-no-repeat bg-cover">
+        <Footer/>
+      </section>
     </>
   );
 }
