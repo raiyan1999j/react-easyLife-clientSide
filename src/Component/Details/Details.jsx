@@ -1,6 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 import "../../App.css";
 import "animate.css"
+import { useState } from "react";
+import DetailsModal from "./DetailsModal";
 
 export default function Details() {
   const {
@@ -16,11 +18,22 @@ export default function Details() {
     providerImg,
     service,
   } = useLoaderData();
+  const loader = useLoaderData();
+  const [modalCon,setModal] = useState(false);
 
+  const modal =(value)=>{
+    setModal(value)
+  }
   return (
     <>
-      <section className="w-[1200px] mx-auto pt-[50px]">
-        <div className="grid grid-cols-2 gap-x-4 w-full">
+      <section className="w-[1200px] mx-auto pt-[50px] relative">
+      {
+        modalCon?<DetailsModal 
+        info={loader}
+        hideModal={(value)=>{modal(value)}}
+        />:""
+      }
+        <div className="grid grid-cols-2 gap-x-4 w-full absolute -z-20">
           <div className="h-[450px] w-full flex justify-center items-center border rounded-lg animate__animated animate__fadeInLeft">
             <div className="h-[90%] w-[90%] border rounded-lg">
               <img
@@ -66,7 +79,9 @@ export default function Details() {
                 </span>
               </p>
               <div>
-                <button className="btn-17 capitalize py-2">
+                <button className="btn-17 capitalize py-2" onClick={()=>{
+                    modal(true)
+                }}>
                   <span className="text-container">
                     <span className="text">Book now</span>
                   </span>
