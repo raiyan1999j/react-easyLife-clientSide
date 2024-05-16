@@ -1,14 +1,48 @@
 import { useContext } from "react";
-import { InfoProvider } from "../../ContextProvider/Context";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import "animate.css";
 import { ImCross } from "react-icons/im";
+import { InfoProvider } from "../../ContextProvider/Context";
+import axios from "axios";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function DetailsModal({ info,hideModal }) {
-  const { _id, service, photo, providerEmail, providerName, price } = info;
+  const { _id, service, photo, providerEmail, providerName, price,currentUser,currentUserName } = info;
   const {user} = useContext(InfoProvider);
+
+  const purchaseItems=(event)=>{
+    event.preventDefault();
+    const wrap ={
+      receiver: user.email,
+      serviceId: _id,
+      serviceProviderEmail:providerEmail,
+      serviceProviderName:providerName,
+      serviceName : service,
+      date: event.target.date.value,
+      instruction: event.target.instruction.value,
+      provider:currentUser,
+      status:'pending'
+    }
+
+    axios.post('http://localhost:5000/purchaseItem',{wrap})
+    .then(()=>{
+      toast.success('Item booked for you', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
+    })
+  }
   return (
     <>
+    <ToastContainer/>
       <div className="grid grid-cols-2 gap-x-4 w-[95%] mx-auto absolute z-20 ">
         <div className="h-[450px] w-full rounded-lg modalCard flex justify-center items-center animate__animated animate__flipInX">
           <div className="h-[90%] w-[90%] rounded-lg">
@@ -23,6 +57,7 @@ export default function DetailsModal({ info,hideModal }) {
         <span className="h-[40px] w-[40px] bg-gray-600 rounded-full absolute right-[-2px] top-[-2px] flex justify-center items-center text-white hover:cursor-pointer" onClick={()=>{hideModal(false)}}>
         <ImCross />
         </span>
+        <form onSubmit={purchaseItems}>
           <div className="flex flex-row justify-between">
             <div>
               <p className="text-white font-bold font-mono text-base">Service Id</p>
@@ -78,7 +113,7 @@ export default function DetailsModal({ info,hideModal }) {
                 </div>
                 <input
                   type="text"
-                  placeholder={user.email}
+                  placeholder={currentUser}
                   className="py-1 px-2 rounded-lg modalInput placeholder:text-white font-bold"
                   disabled
                 />
@@ -91,7 +126,7 @@ export default function DetailsModal({ info,hideModal }) {
                 </div>
                 <input
                   type="text"
-                  placeholder={user.displayName}
+                  placeholder={currentUserName}
                   className="py-1 px-2 rounded-lg modalInput placeholder:text-white font-bold"
                   disabled
                 />
@@ -106,6 +141,7 @@ export default function DetailsModal({ info,hideModal }) {
                 </div>
                 <input
                   type="date"
+                  name="date"
                   className="py-1 px-2 rounded-lg modalInput placeholder:text-white font-bold text-white"
                 />
               </label>
@@ -122,6 +158,7 @@ export default function DetailsModal({ info,hideModal }) {
                 </div>
                 <input
                   type="text"
+                  name="instruction"
                   className="py-1 px-2 rounded-lg modalInput placeholder:text-white font-bold"
                 />
               </label>
@@ -147,6 +184,7 @@ export default function DetailsModal({ info,hideModal }) {
                 </button>
             </div>
           </div>
+          </form>
         </div>
       </div>
     </>

@@ -50,7 +50,8 @@ export default function AddService() {
       location: form.location.value,
       providerEmail:form.providerEmail.value,
       providerName: form.providerName.value,
-      providerImg : providerImg
+      providerImg : providerImg,
+      currentUserName:user.displayName
     };
 
     axios
