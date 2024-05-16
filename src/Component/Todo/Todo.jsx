@@ -2,6 +2,8 @@ import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { InfoProvider } from "../../ContextProvider/Context"
 import { Fade } from "react-awesome-reveal";
+import { Flip } from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function Todo(){
     const {user} = useContext(InfoProvider);
@@ -19,7 +21,17 @@ export default function Todo(){
 
         axios.put('http://localhost:5000/statusUpdate',{wrap})
         .then(()=>{
-            console.log('done')
+            toast.success('update success', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Flip,
+                });
         })
     }
 
