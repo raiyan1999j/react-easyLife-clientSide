@@ -14,6 +14,7 @@ import PrivetRoute from './Component/PrivetRoute/PrivetRoute.jsx';
 import Services from './Component/Services/Services.jsx'
 import Details from './Component/Details/Details.jsx'
 import Booked from './Component/Booked/Booked.jsx';
+import Todo from './Component/Todo/Todo.jsx';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path:'/booked',
         element:<PrivetRoute><Booked/></PrivetRoute>
+      },
+      {
+        path:'/todo',
+        element:<PrivetRoute><Todo/></PrivetRoute>
       }
     ]
   }
