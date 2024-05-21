@@ -25,7 +25,7 @@ export default function DetailsModal({ info,hideModal }) {
       status:'pending'
     }
 
-    axios.post('http://localhost:5000/purchaseItem',{wrap})
+    axios.post('https://assignment-11-beige.vercel.app/purchaseItem',{wrap})
     .then(()=>{
       toast.success('Item booked for you', {
         position: "top-right",

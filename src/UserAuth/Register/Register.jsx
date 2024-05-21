@@ -128,8 +128,8 @@ export default function Register() {
       <div className="h-screen w-full flex justify-center items-center">
       <Loading/>
       </div>:
-      <section className="w-[1200px] mx-auto pt-[50px]">
-        <div className="w-[30%] mx-auto border rounded-xl shadow-xl">
+      <section className="w-[1200px] mx-auto pt-[50px] mobileS:w-[320px]">
+        <div className="w-[30%] mx-auto border rounded-xl shadow-xl mobileS:w-full">
           <div className="h-[80px] w-full bg-navBarImg bg-cover rounded-t-xl flex justify-center items-center">
             <h2 className="text-white text-xl font-serif capitalize">
               Create a account

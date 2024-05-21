@@ -55,7 +55,7 @@ export default function AddService() {
     };
 
     axios
-      .post(`http://localhost:5000/addService?provider=${user.email}`, { wrap })
+      .post(`https://assignment-11-beige.vercel.app/addService?provider=${user.email}`, { wrap })
       .then(() => {
         toast.success("Successfully Added", {
           position: "top-right",
@@ -76,7 +76,7 @@ export default function AddService() {
   };
 
   useEffect(() => {
-    axios(`http://localhost:5000/providerService?provider=${user.email}`).then(
+    axios(`https://assignment-11-beige.vercel.app/providerService?provider=${user.email}`).then(
       (data) => {
         if (data?.data?.category) {
           setOccupation(data.data.category);
@@ -85,7 +85,7 @@ export default function AddService() {
     );
   }, []);
   return (
-    <>
+    <> 
       <section className="w-[1200px] mx-auto pt-[50px] animate__animated animate__fadeInLeft">
         <Fade direction="top" duration={3000} className="w-full text-center">
           <h2 className="font-bold font-mono text-4xl capitalize">
@@ -93,12 +93,12 @@ export default function AddService() {
           </h2>
         </Fade>
           <div
-            className={`w-[60%] mx-auto shadow-md shadow-black relative flip-card-inner ${
+            className={`w-[60%] mx-auto relative flip-card-inner ${
               condition ? "flip-rotate-180" : "flip-rotate-0"
-            }`}
+            } h-[696px]`}
           >
             <div className="absolute w-full border border-gray-200/50 shadow-lg rounded-lg shadow-green-400 flip-card-front">
-              <form className="py-4 px-10" onSubmit={formHandler}>
+              <form className="py-4 px-10 " onSubmit={formHandler}>
                 <div className="flex flex-row justify-between">
                   <div>
                     <label className="form-control w-full max-w-xs">
@@ -265,7 +265,7 @@ export default function AddService() {
                 </button>
               </form>
             </div>
-            <div className="absolute w-full shadow-lg shadow-blue-400 rounded-lg px-10 py-10 flip-card-back">
+            <div className="absolute w-full h-full shadow-lg shadow-blue-400 rounded-lg px-10 py-10 flip-card-back flex justify-center items-center flex-col">
               <span
                 className="text-blue-900 capitalize font-bold text-sm flex flex-row items-center mb-2 hover:cursor-pointer"
                 onClick={() => {

@@ -30,7 +30,7 @@ export default function UpdateService({ showModal, selectedInfo }) {
     };
 
     axios
-      .put(`http://localhost:5000/updateService/${_id}`, { wrap })
+      .put(`https://assignment-11-beige.vercel.app/updateService/${_id}`, { wrap })
       .then(() => {
         toast.success("update successful", {
           position: "top-right",
@@ -72,7 +72,7 @@ export default function UpdateService({ showModal, selectedInfo }) {
   return (
     <>
       <div
-        className="h-[40px] w-[40px] flex justify-center items-center text-white rounded-full modalInput absolute z-50 right-[4%] top-[50%] hover:cursor-pointer"
+        className="h-[40px] w-[40px] flex justify-center items-center text-white rounded-full bg-success/50 absolute z-50 right-[4%] top-[50%] hover:cursor-pointer hover:bg-red-500/50 transition-all duration-500"
         onClick={() => {
           showModal(false);
         }}

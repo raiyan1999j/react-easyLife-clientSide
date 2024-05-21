@@ -3,13 +3,14 @@ import { useContext, useEffect,useState } from "react"
 import { InfoProvider } from "../../ContextProvider/Context"
 import { Fade } from "react-awesome-reveal";
 import "animate.css"
+import Loading from "../../Loader/Loading";
 
 export default function Booked(){
     const {user} = useContext(InfoProvider);
-    const [info,setInfo] = useState([]);
+    const [info,setInfo] = useState(null);
 
     useEffect(()=>{
-        axios(`http://localhost:5000/bookedItem?userMail=${user.email}`)
+        axios(`https://assignment-11-beige.vercel.app/bookedItem?userMail=${user.email}`)
         .then((data)=>{
             setInfo(data.data)
             console.log(data.data)
@@ -18,9 +19,9 @@ export default function Booked(){
     return(
         <>
             <section className="w-[1200px] mx-auto pt-[50px]">
-                <Fade cascade duration={100} className="text-2xl font-bold font-serif capitalize underline">Your booked list</Fade>
+                <h2 className="text-2xl font-bold font-serif capitalize underline animate__animated animate__flipInX">Your booked list</h2>
             </section>
-            <section className="w-[1200px] mx-auto pt-[50px] animate__animated animate__fadeInRight">
+            <section className="w-[1200px] mx-auto pt-[50px]">
             <div className="overflow-x-auto">
   <table className="table table-zebra">
     {/* head */}
@@ -38,12 +39,13 @@ export default function Booked(){
     </thead>
     <tbody>
     {
-        info.length==0?<tr className="text-red-600 font-bold text-4xl capitalize">
+        info?info.length==0?
+        <tr className="text-red-600 font-bold text-4xl capitalize">
             <th>No Item Booked</th>
-        </tr>
-        : info.map((value,index)=>{
+        </tr>:
+        info.map((value,index)=>{
             return(
-                <tr key={index}>
+                <tr key={index} className="animate__animated animate__fadeIn">
                     <th>{index}</th>
                     <th>{value.serviceId}</th>
                     <th>{value.serviceProviderEmail}</th>
@@ -54,7 +56,10 @@ export default function Booked(){
                     <th>{value.status}</th>
                 </tr>
                 )
-        })
+        }):
+        <div className="h-full w-full flex justify-center items-center">
+            <Loading/>
+        </div>
     }
     </tbody>
   </table>

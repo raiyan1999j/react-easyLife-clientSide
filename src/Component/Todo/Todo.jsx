@@ -4,10 +4,12 @@ import { InfoProvider } from "../../ContextProvider/Context"
 import { Fade } from "react-awesome-reveal";
 import { Flip } from "react-toastify";
 import { toast } from "react-toastify";
+import Loading from "../../Loader/Loading";
+import "animate.css";
 
 export default function Todo(){
     const {user} = useContext(InfoProvider);
-    const [info,setInfo] = useState([]);
+    const [info,setInfo] = useState(null);
     const [getItemValue,setItemValue] = useState('pending')
 
     const updateValue=(event)=>{
@@ -19,7 +21,7 @@ export default function Todo(){
             id: value
         }
 
-        axios.put('http://localhost:5000/statusUpdate',{wrap})
+        axios.put('https://assignment-11-beige.vercel.app/statusUpdate',{wrap})
         .then(()=>{
             toast.success('update success', {
                 position: "top-center",
@@ -36,7 +38,7 @@ export default function Todo(){
     }
 
     useEffect(()=>{
-        axios(`http://localhost:5000/todoService?userMail=${user.email}`)
+        axios(`https://assignment-11-beige.vercel.app/todoService?userMail=${user.email}`)
         .then((data)=>{
             setInfo(data.data) 
         })
@@ -66,12 +68,13 @@ export default function Todo(){
     </thead>
     <tbody>
     {
-        info.length==0?<tr className="text-red-600 font-bold text-4xl capitalize">
+        info?info.length==0?
+        <tr className="text-red-600 font-bold text-4xl capitalize">
             <th>No Item Booked</th>
-        </tr>
-        : info.map((value,index)=>{
+        </tr>:
+        info.map((value,index)=>{
             return(
-                <tr key={index}>
+                <tr key={index} className="animate__animated animate__fadeIn">
                     <th>{index}</th>
                     <th>{value.serviceId}</th>
                     <th>{value.receiver}</th>
@@ -92,7 +95,9 @@ export default function Todo(){
                     </th>
                 </tr>
                 )
-        })
+        }):<div className="flex justify-center items-center w-full h-full">
+            <Loading/>
+        </div>
     }
     </tbody>
   </table>

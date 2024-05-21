@@ -8,6 +8,7 @@ export const InfoProvider = createContext(null);
 export default function Context({children}){
     const [load,setLoad] = useState(false);
     const [user,setUser] = useState();
+    const [darkTheme,setDarkTheme] = useState(true);
 
     const registration=(value)=>{
         setLoad(true);
@@ -86,6 +87,10 @@ export default function Context({children}){
         })
     }
 
+    const changeTheme=(value)=>{
+        setDarkTheme(value);
+    }
+
     useEffect(()=>{
         const unmount = onAuthStateChanged(fireAuth,(data)=>{
             setUser(data);
@@ -97,7 +102,7 @@ export default function Context({children}){
         }
     },[user,user?.photoURL])
 
-    const info = {registration,loginUser,logoutUser,googleLogin,user,load};
+    const info = {registration,loginUser,logoutUser,googleLogin,changeTheme,user,load,darkTheme};
 
     return(
         <>

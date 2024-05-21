@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         path:'/details/:id',
         element:<PrivetRoute><Details/></PrivetRoute>,
         loader:({params})=>{
-          return axios(`http://localhost:5000/details/${params.id}`)
+          return axios(`https://assignment-11-beige.vercel.app/details/${params.id}`)
           .then((data)=>{
             return data.data
           })

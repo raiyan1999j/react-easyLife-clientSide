@@ -4,10 +4,11 @@ import { InfoProvider } from "../../ContextProvider/Context";
 import ServiceCard from "./ServiceCard";
 import "../../App.css";
 import { Fade } from "react-awesome-reveal";
+import Loading from "../../Loader/Loading";
 
 export default function Services() {
   const { user } = useContext(InfoProvider);
-  const [allService, setAllService] = useState([]);
+  const [allService, setAllService] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPage, setTotal] = useState(1);
   const [searchService,setSearch] = useState(undefined);
@@ -15,7 +16,7 @@ export default function Services() {
 
   useEffect(() => {
     axios(
-      `http://localhost:5000/allServices?userEmail=${
+      `https://assignment-11-beige.vercel.app/allServices?userEmail=${
         user ? user.email : undefined
       }&pageNumber=${page}&searchService=${searchService}`
     )
@@ -39,8 +40,8 @@ export default function Services() {
   }
   return (
     <>
-      <section className="w-[1200px] mx-auto pt-[50px]">
-        <div className="w-[50%] mx-auto text-center relative">
+      <section className="w-[1200px] mx-auto pt-[50px] mobileS:w-[320px]">
+        <div className="w-[50%] mx-auto text-center relative mobileS:w-full">
         <form onSubmit={searchInfo}>
           <input
             type="text"
@@ -49,7 +50,7 @@ export default function Services() {
             className="input input-bordered w-full max-w-xs"
           />
           <button
-            className="mt-8 inline-flex items-center justify-center rounded-xl bg-green-600 py-3 px-6 font-dm text-base font-medium text-white shadow-xl shadow-green-400/75 transition-transform duration-200 ease-in-out hover:scale-[1.02] absolute bottom-0 right-[140px]"
+            className="mt-8 inline-flex items-center justify-center rounded-xl bg-green-600 py-3 px-6 font-dm text-base font-medium text-white shadow-xl shadow-green-400/75 transition-transform duration-200 ease-in-out hover:scale-[1.02] absolute bottom-0 right-[140px] mobileS:right-0"
           >
             Search
           </button>
@@ -57,23 +58,23 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="w-[1200px] mx-auto pt-[50px]">
+      <section className="w-[1200px] mx-auto pt-[50px] mobileS:w-[320px]">
         <div className="grid grid-cols-1 gap-y-6 w-[90%] mx-auto">
-        {allService.length===0?
-        <div className="h-full w-full flex justify-center items-center">
-        
-          <Fade cascade duration={100} className="text-4xl font-mono capitalize font-bold text-blue-400">
-            No Items found
-          </Fade>
-        </div>:
-        allService?.map((value, index) => {
-            return <ServiceCard key={value._id} info={value} />;
-          })
+        {
+          allService?allService.length===0?
+          <div className="h-full w-full justify-center items-center">
+            <Fade cascade duration={100} className="text-4xl font-mono capitalize font-bold text-blue-400">
+              No Items found
+            </Fade>
+          </div>:allService.map((value,index)=>{
+            return <ServiceCard key={value._id} info={value}/>
+          }):<div className="h-full w-full flex justify-center items-center">
+            <Loading/>
+          </div>
         }
-          
         </div>
       </section>
-      <section className="w-[1200px] mx-auto pt-[50px] flex justify-end">
+      <section className="w-[1200px] mx-auto pt-[50px] flex justify-end mobileS:w-[320px]">
         {pageContainer.map((value, index) => {
           return (
             <button

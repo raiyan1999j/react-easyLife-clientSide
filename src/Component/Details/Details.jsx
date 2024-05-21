@@ -26,14 +26,14 @@ export default function Details() {
   }
   return (
     <>
-      <section className="w-[1200px] mx-auto pt-[50px] relative">
+      <section className="w-[1200px] mx-auto pt-[50px] h-screen relative">
       {
         modalCon?<DetailsModal 
         info={loader}
         hideModal={(value)=>{modal(value)}}
         />:""
       }
-        <div className="grid grid-cols-2 gap-x-4 w-full absolute -z-20">
+        <div className="grid grid-cols-2 gap-x-4 w-full absolute">
           <div className="h-[450px] w-full flex justify-center items-center border rounded-lg animate__animated animate__fadeInLeft">
             <div className="h-[90%] w-[90%] border rounded-lg">
               <img

@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { InfoProvider } from "../../ContextProvider/Context";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import "animate.css";
 
 export default function Login() {
   const navigate = useNavigate();
   const [txtPass,setTxtPass] = useState(false);
   const {loginUser,user,googleLogin} = useContext(InfoProvider);
+  const location = useLocation();
 
   const login=(event)=>{
     event.preventDefault();
@@ -23,19 +25,19 @@ export default function Login() {
   }
   useEffect(()=>{
     if(user){
-      navigate('/home')
+      navigate(location.state==null?'/home':location.state)
     }
   },[user])
   return (
     <>
-      <section className="w-[1200px] mx-auto">
-        <div className="w-[80%] mx-auto grid grid-cols-2 items-center">
-          <div className="w-full">
+      <section className="w-[1200px] mx-auto mobileS:w-[320px]">
+        <div className="w-[80%] mx-auto grid grid-cols-2 items-center mobileS:w-full mobileS:grid-cols-1">
+          <div className="w-full animate__animated animate__fadeInLeft">
             <div>
                 <img src="https://i.postimg.cc/FKdKM7mZ/undraw-Access-account-re-8spm.png" alt="loginImg" />
             </div>
           </div>
-          <div>
+          <div className="animate__animated animate__fadeInRight">
             <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
               <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
                 <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
